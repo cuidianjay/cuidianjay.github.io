@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
 <body>
 <p id="demo">点击这个按钮，获得您的位置：</p>
 <button onclick="getLocation()">试一下</button>
+<input id = "info" type = "text"></input>
+
 <script>
 //判断浏览器是否支持geolocation  
 if(navigator.geolocation){  
@@ -11,7 +16,8 @@ if(navigator.geolocation){
      // getSuccess是执行成功的回调函数  
      // getError是失败的回调函数  
      // getOptions是一个对象，用于设置getCurrentPosition的参数  
-     // 后两个不是必要参数  
+     // 后两个不是必要参数 
+	 var lat,lng;
      var getOptions = {  
           //是否使用高精度设备，如GPS。默认是true  
           enableHighAccuracy:true,  
@@ -27,8 +33,8 @@ if(navigator.geolocation){
      function getSuccess(position){  
             
           console.log(position.timeStamp);     
-   
-         
+		  lat = position.coords.latitude;
+          lng = position.coords.longitude;
           console.log(position.coords.latitude);      
           
           console.log(position.coords.longitude);      
@@ -75,6 +81,8 @@ if(navigator.geolocation){
 	function getLocation(){
 	
 		navigator.geolocation.getCurrentPosition(getSuccess, getError, getOptions); 
+		var i = lat + "," + lng;
+		$("#info").val(i);
 	 }
 	 }
 </script>
