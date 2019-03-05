@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
 <body>
 <p id="demo">点击这个按钮，获得您的位置：</p>
@@ -63,7 +63,7 @@ if(navigator.geolocation){
           // 执行失败时，code属性会指向三个常量中的一个，从而指明错误原因  
           switch(error.code){  
                case error.TIMEOUT: 
-			  alert(error);
+			  alert(JSON.stringify(error));
 					var errorInfo = JSON.stringify(error);
 					$("#info").val(errorInfo);
 					console.log(error);
