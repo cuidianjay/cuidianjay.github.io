@@ -62,7 +62,9 @@ if(navigator.geolocation){
           // error拥有一个code属性和三个常量属性TIMEOUT、PERMISSION_DENIED、POSITION_UNAVAILABLE  
           // 执行失败时，code属性会指向三个常量中的一个，从而指明错误原因  
           switch(error.code){  
-               case error.TIMEOUT:  
+               case error.TIMEOUT: 
+					var errorInfo = JSON.stringify(error);
+					$("#info").val(errorInfo);
 					console.log(error);
 					console.log(error.code);
                     console.log('超时');  
