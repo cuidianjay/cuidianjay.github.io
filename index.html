@@ -61,7 +61,7 @@ if(navigator.geolocation){
           // 执行失败的回调函数，会接受一个error对象作为参数  
           // error拥有一个code属性和三个常量属性TIMEOUT、PERMISSION_DENIED、POSITION_UNAVAILABLE  
           // 执行失败时，code属性会指向三个常量中的一个，从而指明错误原因  
-				alert(error.code);
+			$("#info").val(error.code);
           switch(error.code){  
 				
                case error.TIMEOUT: 
@@ -83,8 +83,7 @@ if(navigator.geolocation){
 	function getLocation(){
 	
 		navigator.geolocation.getCurrentPosition(getSuccess, getError, getOptions); 
-		var i = lat + "," + lng;
-		$("#info").val(i);
+		
 	 }
 	 }
 </script>
