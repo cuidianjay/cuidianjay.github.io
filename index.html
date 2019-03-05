@@ -63,6 +63,7 @@ if(navigator.geolocation){
           // 执行失败时，code属性会指向三个常量中的一个，从而指明错误原因  
           switch(error.code){  
                case error.TIMEOUT: 
+			  alert(error);
 					var errorInfo = JSON.stringify(error);
 					$("#info").val(errorInfo);
 					console.log(error);
