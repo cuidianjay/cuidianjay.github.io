@@ -10,10 +10,6 @@ label: "Share"
 
 platforms:
   -
-    type: Twitter
-    icon: "fab fa-twitter"
-    link: "https://twitter.com/intent/tweet?text=TITLE&url=URL"
-  -
     type: Facebook
     icon: "fab fa-facebook-square"
     link: "https://www.facebook.com/sharer/sharer.php?title=TITLE&u=URL"
@@ -31,4 +27,4 @@ platforms:
   # -
   #   type: Weibo
   #   icon: "fab fa-weibo"
-  #   link: "http://service.weibo.com/share/share.php?title=TITLE&url=URL"
+  #   link: "http://service.weibo.com/share/share.php?title=TITLE&url=URL"  
