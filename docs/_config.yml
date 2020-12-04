@@ -22,7 +22,7 @@ author: cuidianjay                  # change to your full name
 avatar: /assets/img/sample/avatar.jpg   # support internet resources
 
 github:
-  username: cuidianjay1             # change to your github username
+  username: cuidianjay             # change to your github username
 
 #twitter:
 #  username:cuidianjay             # change to your twitter username
@@ -191,7 +191,6 @@ jekyll-archives:
   permalinks:
     tag: '/tags/:name/'
     category: '/categories/:name/'
-    post: /posts/:title/
     
 # DO NOT change this unless you're a Pro user on Jekyll and Web development,
 # or you think you're smart enough to change other relevant URLs within this template.
