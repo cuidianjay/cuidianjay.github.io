@@ -12,7 +12,8 @@ set -eu
 PAGES_BRANCH="gh-pages"
 
 _no_branch=false
-_backup_dir="$(mktemp -d)"
+#临时备份目录
+_backup_dir="mktemp"
 
 init() {
   if [[ -z $(git branch -av | grep "$PAGES_BRANCH") ]]; then
@@ -25,10 +26,11 @@ init() {
 
 backup() {
   mv _site/* "$_backup_dir"
-  mv .git "$_backup_dir"
+  mv "$_backup_dir"
 
   # When adding custom domain from Github website,
   # the CANME only exist on `gh-pages` branch
+  
   if [[ -f CNAME ]]; then
     mv CNAME "$_backup_dir"
   fi
