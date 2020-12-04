@@ -41,6 +41,9 @@ social:
 google_site_verification: google_meta_tag_verification # change to your verification string
 #--------------------------
 
+# DO NOT change this unless you're a Pro user on Jekyll and Web development,
+# or you think you're smart enough to change other relevant URLs within this template.
+permalink: /posts/:title/
 
 # Only if your site type is GitHub Project sites and doesn't have a custom domain,
 # change below value to '/projectname'.
@@ -191,7 +194,3 @@ jekyll-archives:
   permalinks:
     tag: '/tags/:name/'
     category: '/categories/:name/'
-    
-# DO NOT change this unless you're a Pro user on Jekyll and Web development,
-# or you think you're smart enough to change other relevant URLs within this template.
-permalink: /posts/:title/
