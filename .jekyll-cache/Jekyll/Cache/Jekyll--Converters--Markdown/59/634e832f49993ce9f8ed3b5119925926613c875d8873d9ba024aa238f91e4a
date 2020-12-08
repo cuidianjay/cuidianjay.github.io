@@ -1,0 +1,16 @@
+I"a<h3 id="mesi">MESI</h3>
+
+<p>MESI是缓存一致性协议的一种实现方式，MESI描述了一个变量在缓存中的四种状态：</p>
+
+<ul>
+  <li>M：已修改</li>
+  <li>E：独占</li>
+  <li>S：分享</li>
+  <li>I：已失效</li>
+</ul>
+
+<p>MESI状态切换图</p>
+
+<p><img src="/assets/img/study/MESI-state.jpg" alt="MESI状态转换" /></p>
+
+:ET
