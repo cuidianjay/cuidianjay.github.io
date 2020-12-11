@@ -2,7 +2,7 @@
 title: volatile原理
 date: 2020-12-9 14:00:49 +0800
 categories: [并发编程, java]
-tags: [并发编程, 可见性, 有序性]
+tags: [并发编程, 锁]
 math: true
 image: 
 ---
