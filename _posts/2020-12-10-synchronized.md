@@ -85,3 +85,62 @@ image:
 
 * 匿名偏向，可偏向状态，代表对象已经准备好转为偏向锁，此时并没有记录线程id
 * 调用偏向锁的hashCode()方法，会导致该对象升级为轻量级锁
+
+### 锁粗化
+
+提升程序性能
+
+例如下面这种代码
+
+~~~java
+synchronized (object){
+    //do something1
+}
+synchronized (object){
+    //do something2
+}
+~~~
+
+锁粗化之后
+
+~~~java
+synchronized (object){
+    //do something1
+    //do something2
+}
+~~~
+
+### 锁消除
+
+去除不可能存在共享竞争的资源的锁，依据线程逃逸分析的数据支持。
+
+例如
+
+~~~java
+private void method(){
+    Object o = new Object();
+    synchronized (o){
+    	//do something
+	}
+}
+
+~~~
+
+锁消除优化后
+
+~~~java
+private void method(){
+    Object o = new Object();
+    //do something
+}
+~~~
+
+### 线程逃逸分析
+
+java对象 
+
+八大基本数据类型->标量  标量替换
+
+对象->聚合量
+
+判断当前对象的引用会不会逃逸出该线程。
