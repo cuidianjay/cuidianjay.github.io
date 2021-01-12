@@ -13,6 +13,7 @@ image:
 - CountDownLatch
 - Semaphore
 - CyclicBarrier
+- Exchanger
 
 #### CountDownLatch
 
@@ -20,6 +21,62 @@ image:
 
 - 应用场景
 
+  - 计数器
+
+    ~~~java
+    int count = 10;
+    CountDownLatch countDownLatch = new CountDownLatch(count);
+    for(int i = 0; i < 10; i++){
+        new Thread({
+            run(){
+                //do something
+                //count-1
+                countDownLatch.countDown();
+            }
+        }).start();
+    }
+    //主线程在此阻塞，等待所有线程执行完成,count=0
+    countDownLatch.await();
+    ~~~
+
+    
+
+  - 模拟并发
+
+    ~~~java
+    int count = 1;
+    CountDownLatch countDownLatch = new CountDownLatch(count);
+    for(int i = 0; i < 10; i++){
+        new Thread({
+            run(){
+                //所有线程都在此阻塞,等待countDown()信号
+                countDownLatch.await();
+                //do something
+            }
+        }).start();
+    }
+    //count-1=0 唤醒await()阻塞的线程
+    countDownLatch.countDown();
+    ~~~
+
+    除了CountDownLatch，CyclicBarrier也可以实现模拟并发，不过CyclicBarrier可以重复执行
+    
+    ~~~java
+    int count = 11;
+    CyclicBarrier cyclicBarrier = new CyclicBarrier(count);
+    for(int i = 0; i < 10; i++){
+        new Thread({
+            run(){
+                //等待11个线程调用cyclicBarrier.await()方法
+                cyclicBarrier.await();
+                //do something
+            }
+        }).start();
+    }
+    //第11个线程await() 所有线程开始执行后续操作
+    cyclicBarrier.await();
+    ~~~
+  
 - 原理
 
   
@@ -81,5 +138,52 @@ image:
 #### CyclicBarrier
 
 - 介绍
+
 - 应用场景
+
+  - 模拟并发
+
 - 原理
+
+#### Exchanger
+
+- 介绍
+
+  可以在线程间交换数据。
+
+- 实例代码
+
+  ~~~java
+  public static void main(String []args) {
+      final Exchanger<Integer> exchanger = new Exchanger<Integer>();
+      for(int i = 0 ; i < 4 ; i++) {
+          final Integer num = i;
+          new Thread() {
+              public void run() {
+                  System.out.println("我是线程：Thread_" + this.getName() + "我的数据是：" + num);
+                  try {
+                      Integer exchangeNum = exchanger.exchange(num);
+                      Thread.sleep(1000);
+                      System.out.println("我是线程：Thread_" + this.getName() + "我原先的数据为：" + num + " , 交换后的数据为：" + exchangeNum);
+                  } catch (InterruptedException e) {
+                      e.printStackTrace();
+                  }
+              }
+          }.start();
+      }
+  }
+  
+  //运行结果
+  /*
+  我是线程：Thread_Thread-0我的数据是：0
+  我是线程：Thread_Thread-3我的数据是：3
+  我是线程：Thread_Thread-2我的数据是：2
+  我是线程：Thread_Thread-1我的数据是：1
+  我是线程：Thread_Thread-0我原先的数据为：0 , 交换后的数据为：3
+  我是线程：Thread_Thread-1我原先的数据为：1 , 交换后的数据为：2
+  我是线程：Thread_Thread-2我原先的数据为：2 , 交换后的数据为：1
+  我是线程：Thread_Thread-3我原先的数据为：3 , 交换后的数据为：0
+  */
+  ~~~
+
+  
