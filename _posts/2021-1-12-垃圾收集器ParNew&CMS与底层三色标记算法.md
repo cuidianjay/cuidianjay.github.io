@@ -140,7 +140,7 @@ image:
   2. -XX:ConcGCThreads：并发的GC线程数；
   3. ss
   4. ss
-  5. -XX:CMSInitiatingOccupancyFraction：当老年代使用达到该比例会触发Full GC，（默认92，百分比），这个参数就是为了避免“concurrent mode failure”出现，当系统中大对象比较多时，该参数值应适当减小；
+  5. -XX:CMSInitiatingOccupancyFraction：当老年代使用达到该比例会触发Full GC，（默认92，百分比），这个参数就是为了避免“concurrent mode failure”出现，当系统中大对象比较多时、并发高时，该参数值应适当减小；
 
   
 
