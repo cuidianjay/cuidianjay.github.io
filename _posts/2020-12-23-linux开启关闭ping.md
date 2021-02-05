@@ -30,3 +30,5 @@ iptables -A INPUT -p icmp --icmp-type 8 -s 0/0 -j DROP
 
 
 
+cat -n domp.log | tail -n +28 | head -n 20
+
