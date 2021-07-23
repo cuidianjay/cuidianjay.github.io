@@ -1,0 +1,49 @@
+如何快速熟悉一个中间件
+
+1. 记住主要使用流程
+2. 记住主要功能
+3. 记住主要流程（源码）
+4. 记住主要接口、方法的作用（源码）
+
+### 配置中心源码
+
+#### 动态刷新 client是如何感知的
+
+入口：接口、核心方法
+
+
+
+#### 多个配置优先级如何确定
+
+PropertySourceLoader接口
+
+org.springframework.boot.env.YamlPropertySourceLoader#load
+
+org.springframework.boot.env.PropertiesPropertySourceLoader#load
+
+
+
+配置中心 ConfigService
+
+注册中心 NamingService
+
+应用启动时：
+
+在加载配置之前先加载本地缓存的配置，这样即使配置中心挂掉，应用也可以正常启动。
+
+ClientWorker发起http请求，拉取配置
+
+Nacos、、服务端在接收到客户端读取配置请求时，服务端会先从本地缓存文件读取配置。
+
+DumpService接口 Nacos启动时，会将数据库中的配置信息同步到本地缓存文件。
+
+
+
+NotifyCenter类 发布配置变更事件
+
+
+
+#### 集群间的节点数据是如何同步的
+
+
+
